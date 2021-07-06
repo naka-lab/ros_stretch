@@ -27,3 +27,43 @@ sudo apt install -y ros-melodic-desktop-full
 ```
 sudo apt install python-rosdep
 ```
+
+```
+sudo -E rosdep init
+```
+
+```
+rosdep update
+```
+
+```
+sudo apt install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
+```
+
+```
+source /opt/ros/melodic/setup.bash
+```
+
+```
+grep -q -F 'source /opt/ros/melodic/setup.bash' ~/.bashrc || echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+```
+
+```
+mkdir -p ~/catkin_ws/src
+```
+
+```
+cd ~/catkin_ws/src
+```
+
+```
+catkin_init_workspace
+```
+
+```
+cd ..
+```
+
+```
+catkin_make
+```
