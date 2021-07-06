@@ -41,11 +41,15 @@ sudo apt install -y python-rosinstall python-rosinstall-generator python-wstool 
 ```
 
 ```
-source /opt/ros/melodic/setup.bash
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
 
 ```
-grep -q -F 'source /opt/ros/melodic/setup.bash' ~/.bashrc || echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+```
+source /opt/ros/melodic/setup.bash
 ```
 
 ```
