@@ -44,11 +44,11 @@ cd ~/catkin_ws/src/stretch_ros/stretch_description/urdf/
 ```
 
 # 実行
-## 台車の速度制御とアーム制御
+## 台車の速度制御とアーム制御（シミュレーション）
 - アームの制御：[stretch_arm.py](scripts/stretch_arm.py)
 - 物体把持動作：[stretch_grasp_object.py](scripts/stretch_grasp_object.py)
 
-## SLAM
+## SLAM（シミュレーション）
 1. Gazenboが起動したら障害物を配置する
 ```
 roslaunch stretch_gazebo gazebo.launch
@@ -65,7 +65,7 @@ roslaunch stretch_gazebo teleop_keyboard.launch
 rosrun map_server map_saver -f ~/stretchmap
 ```
 
-# Navigation
+# Navigation（シミュレーション）
 - SALMの1で起動したlaunch以外は落として以下を実行
 ```
 roslaunch ros_stretch sim_navigation.launch map_yaml:=$HOME/stretchmap.yaml
