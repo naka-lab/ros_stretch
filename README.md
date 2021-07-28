@@ -45,6 +45,11 @@ cd ~/catkin_ws/src/stretch_ros/stretch_description/urdf/
 
 # 実行
 ## 台車の速度制御とアーム制御（シミュレーション）
+
+```
+roslaunch stretch_gazebo gazebo.launch
+roslaunch stretch_moveit_config demo_gazebo.launch
+```
 - アームの制御：[stretch_arm.py](scripts/stretch_arm.py)
 - 物体把持動作：[stretch_grasp_object.py](scripts/stretch_grasp_object.py)
 
