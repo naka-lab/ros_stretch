@@ -45,6 +45,8 @@ cd ~/catkin_ws/src/stretch_ros/stretch_description/urdf/
 
 # 実行
 ## 台車の速度制御とアーム制御
+- アームの制御：[stretch_arm.py](scripts/stretch_arm.py)
+- 物体把持動作：[stretch_grasp_object.py](scripts/stretch_grasp_object.py)
 
 ## SLAM
 1. Gazenboが起動したら障害物を配置する
