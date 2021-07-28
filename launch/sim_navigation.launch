@@ -12,7 +12,9 @@
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_yaml)" />
 
-  <include file="$(find amcl)/examples/amcl_diff.launch" />
+  <include file="$(find amcl)/examples/amcl_diff.launch" >
+  	<remap from="scan" to="/scan_filtered" />
+  </include>
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find stretch_navigation)/config/common_costmap_params.yaml" command="load" ns="global_costmap" />
@@ -21,6 +23,10 @@
     <rosparam file="$(find stretch_navigation)/config/global_costmap_params_withmap.yaml" command="load" />
     <rosparam file="$(find stretch_navigation)/config/base_local_planner_params.yaml" command="load" />
     <remap from="/cmd_vel" to="/stretch_diff_drive_controller/cmd_vel" />
+  </node>
+  
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+    <rosparam command="load" file="$(find ros_stretch)/config/laser_filter2.yaml" />
   </node>
 
   <node name="rviz" pkg="rviz" type="rviz" output="log" args="-d $(find stretch_navigation)/rviz/navigation.rviz" />

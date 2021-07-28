@@ -15,6 +15,12 @@
 
   <node name="rviz" pkg="rviz" type="rviz" output="log" args="-d $(find stretch_navigation)/rviz/mapping.rviz" />
 
-  <node pkg="gmapping" type="slam_gmapping" name="gmapping_record_map" output="log" />
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+    <rosparam command="load" file="$(find ros_stretch)/config/laser_filter2.yaml" />
+  </node>
+
+  <node pkg="gmapping" type="slam_gmapping" name="gmapping_record_map" output="log">
+    <remap from="scan" to="/scan_filtered" />
+  </node>
 
 </launch>
