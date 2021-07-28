@@ -21,7 +21,7 @@ catkin_make
 ```
 
 # Stretchパッケージのインストール
-公式リポジトリをClone
+- 公式リポジトリをClone
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/hello-robot/stretch_ros
@@ -31,8 +31,40 @@ rosdep install --from-paths src --ignore-src -r -y
 catkin_make
 ```
 
-このリポジトリをClone
+- このリポジトリをClone
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/naka-lab/ros_stretch.git
+```
+
+- URDFの作成
+```
+cd ~/catkin_ws/src/stretch_ros/stretch_description/urdf/
+./xacro_to_urdf.sh
+```
+
+# 実行
+## 台車の速度制御とアーム制御
+
+## SLAM
+1. Gazenboが起動したら障害物を配置する
+```
+roslaunch stretch_gazebo gazebo.launch
+```
+
+2. キーボード操作でMAP作成
+```
+roslaunch ros_stretch sim_mapping.launch
+roslaunch stretch_gazebo teleop_keyboard.launch
+```
+
+3. MAP保存
+```
+rosrun map_server map_saver -f ~/stretchmap
+```
+
+# Navigation
+- SALMの1で起動したlaunch以外は落として以下を実行
+```
+roslaunch ros_stretch sim_navigation.launch map_yaml:=$HOME/stretchmap.yaml
 ```
