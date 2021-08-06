@@ -13,6 +13,7 @@ sudo apt install -y python-rosinstall python-rosinstall-generator python-wstool 
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 source /opt/ros/melodic/setup.bash
+sudo apt-get install ros-melodic-dwa-local-planner
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 catkin_init_workspace
