@@ -44,7 +44,7 @@ cd ~/catkin_ws/src/stretch_ros/stretch_description/urdf/
 ./xacro_to_urdf.sh
 ```
 
-# move itのインストール(パッケージが入ってなかった場合
+# move itのインストール(パッケージが入ってなかった場合)
 ```
 sudo apt install ros-melodic-moveit
 ```
