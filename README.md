@@ -72,9 +72,10 @@ rosrun map_server map_saver -f ~/stretchmap
 ```
 
 # Navigation（シミュレーション）
-**navigation_config内にある3つのファイルをstretch_ros/stretch_navigation/config内にあるファイルと置き換える**<br>
 
 - SALMの1で起動したlaunch以外は落として以下を実行
 ```
 roslaunch ros_stretch sim_navigation.launch map_yaml:=$HOME/stretchmap.yaml
 ```
+
+**navigationが上手くいかない場合はnavigation_config内にある3つのファイルをstretch_ros/stretch_navigation/config内にあるファイルと置き換える**<br>
