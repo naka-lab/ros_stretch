@@ -1,4 +1,4 @@
-# ハードウェに関するメモ
+# ハードウェアに関するメモ
 
 開封参考動画：https://www.youtube.com/watch?v=O-6VrqqGlig
 
