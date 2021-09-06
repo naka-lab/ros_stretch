@@ -63,7 +63,7 @@ roslaunch stretch_moveit_config demo_gazebo.launch
 1. Gazenboを起動
 ```
 export GAZEBO_MODEL_PATH=~/catkin_ws/src/ros_stretch/models:${GAZEBO_MODEL_PATH}
-roslaunch stretch_gazebo gazebo_stretchworld.launch
+roslaunch ros_stretch gazebo_stretchworld.launch
 ```
 （1行目はモデルファイルの場所を指定している．bashrcに書いておけば省略可能．）
 
