@@ -1,4 +1,9 @@
-# ROSのインストール:ROS melodic (Ubuntu18.04)
+# Stretch
+
+## [ハードウェアの使い方等](hardware.md)
+
+
+## ROSのインストール: ROS melodic (Ubuntu18.04)
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt install -y curl
@@ -21,7 +26,7 @@ cd ..
 catkin_make
 ```
 
-# Stretchパッケージのインストール
+## Stretchパッケージのインストール
 - 公式リポジトリをClone
 ```
 cd ~/catkin_ws/src
@@ -44,13 +49,13 @@ cd ~/catkin_ws/src/stretch_ros/stretch_description/urdf/
 ./xacro_to_urdf.sh
 ```
 
-# move itのインストール(パッケージが入ってなかった場合)
+- move itのインストール(パッケージが入ってなかった場合)
 ```
 sudo apt install ros-melodic-moveit
 ```
 
-# 実行
-## 台車の速度制御とアーム制御（シミュレーション）
+## 実行
+### 台車の速度制御とアーム制御（シミュレーション）
 
 ```
 roslaunch stretch_gazebo gazebo.launch
@@ -59,7 +64,7 @@ roslaunch stretch_moveit_config demo_gazebo.launch
 - アームの制御：[stretch_arm.py](scripts/stretch_arm.py)
 - 物体把持動作：[stretch_grasp_object.py](scripts/stretch_grasp_object.py)
 
-## SLAM（シミュレーション）
+### SLAM（シミュレーション）
 1. Gazenboを起動
 ```
 export GAZEBO_MODEL_PATH=~/catkin_ws/src/ros_stretch/models:${GAZEBO_MODEL_PATH}
@@ -78,7 +83,7 @@ roslaunch stretch_gazebo teleop_keyboard.launch
 rosrun map_server map_saver -f ~/stretchmap
 ```
 
-# Navigation（シミュレーション）
+## Navigation（シミュレーション）
 
 - SALMの1で起動したlaunch以外は落として以下を実行（自作マップを使う場合）
 ```
