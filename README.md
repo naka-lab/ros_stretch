@@ -60,10 +60,12 @@ roslaunch stretch_moveit_config demo_gazebo.launch
 - 物体把持動作：[stretch_grasp_object.py](scripts/stretch_grasp_object.py)
 
 ## SLAM（シミュレーション）
-1. Gazenboが起動したら障害物を配置する
+1. Gazenboを起動
 ```
-roslaunch stretch_gazebo gazebo.launch
+export GAZEBO_MODEL_PATH=~/catkin_ws/src/ros_stretch/models:${GAZEBO_MODEL_PATH}
+roslaunch stretch_gazebo gazebo_stretchworld.launch
 ```
+（1行目はモデルファイルの場所を指定している．bashrcに書いておけば省略可能．）
 
 2. キーボード操作でMAP作成
 ```
@@ -78,10 +80,9 @@ rosrun map_server map_saver -f ~/stretchmap
 
 # Navigation（シミュレーション）
 
-- SALMの1で起動したlaunch以外は落として以下を実行
+- SALMの1で起動したlaunch以外は落として以下を実行（自作マップを使う場合）
 ```
 roslaunch ros_stretch sim_navigation.launch map_yaml:=$HOME/stretchmap.yaml
 ```
-
-**navigationが上手くいかない場合は[navigation_config](navigation_config/)内にある3つのファイルを**<br>
-**catkin_ws/src/stretch_ros/stretch_navigation/config内にあるファイルと置き換える**<br>
+すでに作成済みのマップ`map_yaml:=$HOME/catkin_ws/src/ros_stretch/map/stretchmap.yaml`も使用可能．
+（sim_navigation.launchでは，「base_local_planner_params.yaml, common_costmap_params.yaml, local_costmap_params.yaml」のデフォルトファイルだとうまく動作しなかったため，独自に書き換えた[config](config)内のファイルを利用している．）
