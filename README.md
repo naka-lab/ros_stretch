@@ -77,6 +77,10 @@ roslaunch ros_stretch gazebo_stretchworld.launch
 roslaunch ros_stretch sim_mapping.launch
 roslaunch stretch_gazebo teleop_keyboard.launch
 ```
+**teleop_keyboard.launchが立ち上がらない場合は以下のコマンドを実行**
+```
+roslaunch ros_stretch teleop_keyboard.launch
+```
 
 3. MAP保存
 ```
