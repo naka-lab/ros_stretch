@@ -89,9 +89,11 @@ rosrun map_server map_saver -f ~/stretchmap
 
 ## Navigation（シミュレーション）
 
-- SALMの1で起動したlaunch以外は落として以下を実行（自作マップを使う場合）
+- SALMの1で起動したlaunch以外は落として以下を実行
 ```
 roslaunch ros_stretch sim_navigation.launch map_yaml:=$HOME/stretchmap.yaml
 ```
 すでに作成済みのマップ`map_yaml:=$HOME/catkin_ws/src/ros_stretch/map/stretchmap.yaml`も使用可能．
 （sim_navigation.launchでは，「base_local_planner_params.yaml, common_costmap_params.yaml, local_costmap_params.yaml」のデフォルトファイルだとうまく動作しなかったため，独自に書き換えた[config](config)内のファイルを利用している．）
+
+- この状態でrvizから移動させることが可能．プログラムから移動させたい場合は，[サンプル](scripts/stretch_navigation.py)を参照
