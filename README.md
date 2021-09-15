@@ -1,6 +1,5 @@
 # Stretch
 
-## [ハードウェアの使い方等](hardware.md)
 
 
 ## ROSのインストール: ROS melodic (Ubuntu18.04)
@@ -27,6 +26,9 @@ catkin_make
 ```
 
 ## 実機
+
+### [ハードウェアの使い方等](hardware.md)
+
 
 ### セットアップ
 config内の以下のファイルを置き換える（すでに置き換えていたら不要）  
