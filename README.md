@@ -49,7 +49,7 @@ catkin_make
 
 - ナビゲーションモード（走行可能）にする
   ```
-  rosservice call /stretch_to_navigation_mode “{}”
+  rosservice call /switch_to_navigation_mode “{}”
   ```
 
 ### SLAM
