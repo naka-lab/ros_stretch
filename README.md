@@ -31,10 +31,10 @@ catkin_make
 
 
 ### セットアップ
-config内の以下のファイルを置き換える（すでに置き換えていたら不要）  
-[base_local_planner_params.yaml](config/base_local_planner_params.yaml)  
-[common_costmap_params.yaml](config/common_costmap_params.yaml)  
-[local_costmap_params.yaml](config/local_costmap_params.yaml)  
+- config内の以下のファイルを置き換える（すでに置き換えていたら不要）  
+  - [base_local_planner_params.yaml](config/base_local_planner_params.yaml)  
+  - [common_costmap_params.yaml](config/common_costmap_params.yaml)  
+  - [local_costmap_params.yaml](config/local_costmap_params.yaml)  
 
 ### 実行前の準備
 - 遠隔操作プログラムを終了する
