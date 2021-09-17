@@ -37,6 +37,8 @@ catkin_make
   - [local_costmap_params.yaml](config/local_costmap_params.yaml)  
 
 ### 実行前の準備
+- （アームを使う場合）xboxのコントローラを接続して，startボタンを押してキャリブレーションする
+
 - 遠隔操作プログラムを終了する
   ```
   pkill -f stretch_xbox*
