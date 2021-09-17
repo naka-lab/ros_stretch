@@ -6,9 +6,9 @@ import actionlib
 from control_msgs.msg import FollowJointTrajectoryAction
 from control_msgs.msg import FollowJointTrajectoryGoal
 from trajectory_msgs.msg import JointTrajectoryPoint
+    
 
-
-def move_arm( lift=None, length=None, wrist=None ):
+def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None ):
     joint_names = []
     positions = []
 
@@ -24,6 +24,15 @@ def move_arm( lift=None, length=None, wrist=None ):
     if wrist:
         joint_names.append( "joint_wrist_yaw" )
         positions.append(wrist)
+
+    if pan:
+        joint_names.append( "joint_head_pan" )
+        positions.append(pan)
+
+    if tilt:
+        joint_names.append( "joint_head_tilt" )
+        positions.append(tilt)
+
 
     point = JointTrajectoryPoint()
     point.time_from_start = rospy.Duration(1.0)
@@ -44,9 +53,14 @@ if __name__=="__main__":
     trajectory_client.wait_for_server(timeout=rospy.Duration(60.0))
 
     # 高さだけ変える
-    move_arm( 0.6 )
+    move_robot( 0.6 )
 
     # 高さ，長さ，ハンド角度を変える
-    move_arm( 0.6, 0.1, 0.0 )
+    move_robot( 0.6, 0.1, 0.0 )
+
+    # カメラを動かす
+    move_robot( pan=-1.5, tilt=-0.3 )
+
+
 
 
