@@ -74,6 +74,10 @@ catkin_make
   roslaunch stretch_navigation navigation.launch map_yaml:=/home/hello-robot/test1.yaml
   ```
 
+### アーム制御
+- [プログラム](scripts/stretch_arm2.py)を起動する
+- 現状ではmoveit経由では制御できないっぽい
+
 ## シミュレーション
 ### Stretchパッケージのインストール
 - 公式リポジトリをClone
