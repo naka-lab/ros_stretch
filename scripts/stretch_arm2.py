@@ -8,7 +8,7 @@ from control_msgs.msg import FollowJointTrajectoryGoal
 from trajectory_msgs.msg import JointTrajectoryPoint
     
 
-def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None ):
+def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper=None ):
     joint_names = []
     positions = []
 
@@ -32,6 +32,10 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None ):
     if tilt:
         joint_names.append( "joint_head_tilt" )
         positions.append(tilt)
+        
+    if gripper:
+        joint_names.append('joint_gripper_finger_left')
+        positions.append(gripper)
 
 
     point = JointTrajectoryPoint()
@@ -61,6 +65,5 @@ if __name__=="__main__":
     # カメラを動かす
     move_robot( pan=-1.5, tilt=-0.3 )
 
-
-
-
+    # ハンドを動かす
+    move_robot( gripper=0.1 )
