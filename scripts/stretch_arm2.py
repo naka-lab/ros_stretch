@@ -13,27 +13,27 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
     positions = []
 
     # 指定された関節だけを動かす
-    if lift:
+    if lift != None:
         joint_names.append( "joint_lift" )
         positions.append( lift )
 
-    if length:
+    if length != None:
         joint_names += ["joint_arm_l0", "joint_arm_l1", "joint_arm_l2", "joint_arm_l3"]
         positions += [ length/4 for _ in range(4) ]
 
-    if wrist:
+    if wrist != None:
         joint_names.append( "joint_wrist_yaw" )
         positions.append(wrist)
 
-    if pan:
+    if pan != None:
         joint_names.append( "joint_head_pan" )
         positions.append(pan)
 
-    if tilt:
+    if tilt != None:
         joint_names.append( "joint_head_tilt" )
         positions.append(tilt)
         
-    if gripper:
+    if gripper != None:
         joint_names.append('joint_gripper_finger_left')
         positions.append(gripper)
 
