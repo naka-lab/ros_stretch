@@ -50,7 +50,8 @@
   ```
 
 ### アーム制御
-- [プログラム](scripts/stretch_arm2.py)を起動する
+- [アームを動かすサンプル](scripts/stretch_arm2.py)
+- [ARマーカーの位置を掴むサンプル](scripts/stretch_grasp_object2.py)
 - 現状ではmoveit経由では制御できないっぽい
 
 ## シミュレーション
