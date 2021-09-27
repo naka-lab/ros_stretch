@@ -111,11 +111,17 @@ def rotate( theta ):
 
     while 1:
         cur_rot = get_current_rot()
-        diff = normalize_angle(cur_rot-init_rot)
+        diff = normalize_angle(cur_rot-init_rot) # 現在の移動量
+
+        # 現在の移動量と目標との差で比例制御
+        if theta>=0:       
+            rot = min( max( 0.01, (theta-diff)*0.3 ), 0.2 )
+        else:
+            rot = min( max( -0.2, (theta-diff)*0.3 ), -0.01 )
 
         move_vel( 0, rot )
 
-        print(init_rot, cur_rot, diff, theta)
+        print(init_rot, cur_rot, diff, theta, diff-theta ,rot)
         if theta>0 and diff>theta:
             break
 
@@ -163,7 +169,8 @@ def main():
 
     # 腕を上げる
     print("腕を上げる")
-    move_robot( lift=target_rob[2], wrist=0.0 )
+    move_robot( lift=target_rob[2] )
+    move_robot( wrist=0.0  )
 
     # ハンドを開く
     print("ハンドを開く")
