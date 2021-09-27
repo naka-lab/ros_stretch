@@ -82,7 +82,7 @@ def main():
     sb_lift = make_gui( "ARM LIFT", 0.2, 0.7, 0.01, lambda : move_robot( lift=sb_lift.get() ) )
     sb_len = make_gui( "ARM LEN", 0, 0.51, 0.01, lambda : move_robot( length=sb_len.get() ) )
     sb_wrist = make_gui( "ARM WRIST", -1.3, 4.5, 0.1, lambda : move_robot( wrist=sb_wrist.get() ) )
-    sb_gripper = make_gui( "GRIPPER", -0.37, 0.18, 0.01, lambda : move_robot( gripper=sb_gripper.get() ) )
+    sb_gripper = make_gui( "GRIPPER", -0.37, 0.19, 0.01, lambda : move_robot( gripper=sb_gripper.get() ) )
 
     sbs = [ sb_pan, sb_tilt, sb_lift, sb_len, sb_wrist, sb_gripper ]
     tk.Button( root, text='GET POSE', command=lambda : get_current_pose(sbs) ).pack(side="left")
