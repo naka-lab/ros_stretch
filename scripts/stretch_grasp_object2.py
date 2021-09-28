@@ -179,7 +179,7 @@ def main():
     # 腕を伸ばす
     print("腕を伸ばす")
     offset_length = 0.33
-    move_robot( length=-target_rob[1]-offset_length )
+    move_robot( length=-target_rob[1]-offset_length+0.1 )
 
     # ハンドを閉じる
     print("ハンドを閉じる")
