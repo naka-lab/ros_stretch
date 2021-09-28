@@ -115,9 +115,9 @@ def rotate( theta ):
 
         # 現在の移動量と目標との差で比例制御
         if theta>=0:       
-            rot = min( max( 0.01, (theta-diff)*0.3 ), 0.2 )
+            rot = min( max( 0.1, (theta-diff)*0.3 ), 0.2 )
         else:
-            rot = min( max( -0.2, (theta-diff)*0.3 ), -0.01 )
+            rot = min( max( -0.2, (theta-diff)*0.3 ), -0.1 )
 
         move_vel( 0, rot )
 

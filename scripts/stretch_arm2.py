@@ -57,13 +57,15 @@ if __name__=="__main__":
     trajectory_client.wait_for_server(timeout=rospy.Duration(60.0))
 
     # 高さだけ変える
-    move_robot( 0.6 )
+    # move_robot( 0.6 )
 
     # 高さ，長さ，ハンド角度を変える
-    move_robot( 0.6, 0.1, 0.0 )
+    # move_robot( 0.6, 0.1, 0.0 )
 
     # カメラを動かす
-    move_robot( pan=-1.5, tilt=-0.3 )
+    move_robot( pan=-1.5, tilt=-1.0 )
+
+
 
     # ハンドを動かす
-    move_robot( gripper=0.1 )
+    # move_robot( gripper=0.1 )
