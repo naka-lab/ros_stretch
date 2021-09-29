@@ -14,19 +14,11 @@
 ### 実行前の準備
 - （アームを使う場合）xboxのコントローラを接続して，startボタンを押してキャリブレーションする
 
-- 遠隔操作プログラムを終了する
-  ```
-  pkill -f stretch_xbox*
-  ```
 
+### アームと台車の速度制御だけを使う場合
 - Stretchドライバーを起動する
   ```
   roslaunch stretch_core stretch_driver.launch
-  ```
-
-- ナビゲーションモード（走行可能）にする
-  ```
-  rosservice call /switch_to_navigation_mode “{}”
   ```
 
 ### SLAM
