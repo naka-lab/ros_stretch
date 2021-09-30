@@ -7,6 +7,7 @@ from control_msgs.msg import FollowJointTrajectoryAction
 from control_msgs.msg import FollowJointTrajectoryGoal
 from trajectory_msgs.msg import JointTrajectoryPoint
 from sensor_msgs.msg import JointState
+from geometry_msgs.msg import Twist
 
 import tkinter as tk
 from tkinter import ttk
@@ -75,6 +76,26 @@ def get_current_pose( scrolls ):
     scrolls[4].set(  js.position[9] )
     scrolls[5].set(  js.position[0] )
 
+def send_vel( linear, rot ):
+    t = Twist()
+    t.linear.x = linear
+    t.angular.z = rot
+    pub_cmdvel.publish( t )
+
+lin_vel = 0.0
+rot_vel = 0.0
+def set_vel( lin, rot ):
+    global lin_vel, rot_vel
+    lin_vel = lin
+    rot_vel = rot
+    if lin_vel==0 and rot_vel==0:
+        send_vel(0, 0)
+
+def send_navi_goal_loop():
+    if lin_vel!=0 or rot_vel!=0:
+        send_vel( lin_vel, rot_vel )
+
+    root.after(100, send_navi_goal_loop)
 
 def main():
     sb_pan = make_gui( "NECK PAN", -3.14, 1.7, 0.1, lambda : move_robot( pan=sb_pan.get() ) )
@@ -84,17 +105,28 @@ def main():
     sb_wrist = make_gui( "ARM WRIST", -1.3, 4.5, 0.1, lambda : move_robot( wrist=sb_wrist.get() ) )
     sb_gripper = make_gui( "GRIPPER", -0.37, 0.19, 0.01, lambda : move_robot( gripper=sb_gripper.get() ) )
 
+    frame = tk.Frame(root)
     sbs = [ sb_pan, sb_tilt, sb_lift, sb_len, sb_wrist, sb_gripper ]
-    tk.Button( root, text='GET POSE', command=lambda : get_current_pose(sbs) ).pack(side="left")
+    tk.Button( frame, text='GET POSE', command=lambda : get_current_pose(sbs) ).pack(side="left")
+    frame.pack()
 
+    frame = tk.Frame(root)
+    tk.Label(frame, text="MOVE BASE", width=15  ).pack(side="left")
+    tk.Button( frame, text='<', command=lambda : set_vel(0.0, 0.1)  ).pack(side="left")
+    tk.Button( frame, text='^', command=lambda : set_vel(0.05, 0.1)  ).pack(side="left")
+    tk.Button( frame, text='v', command=lambda : set_vel(-0.05, 0.0)   ).pack(side="left")
+    tk.Button( frame, text='>', command=lambda : set_vel(0.0, -0.1)   ).pack(side="left")
+    tk.Button( frame, text='stop', command=lambda : set_vel(0.0, 0.0) ).pack(side="left")
+    frame.pack()
 
+    send_navi_goal_loop()
     root.mainloop()
 
 if __name__=="__main__":
     rospy.init_node("test")
     trajectory_client = actionlib.SimpleActionClient('/stretch_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
-    trajectory_client.wait_for_server(timeout=rospy.Duration(60.0))
-
+    pub_cmdvel = rospy.Publisher( "/stretch/cmd_vel", Twist, queue_size=1, latch=True)
+    
     root = tk.Tk()
     root.title("stretch controller")
 
