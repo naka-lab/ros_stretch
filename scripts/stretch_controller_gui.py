@@ -100,7 +100,7 @@ def send_navi_goal_loop():
 def main():
     sb_pan = make_gui( "NECK PAN", -3.14, 1.7, 0.1, lambda : move_robot( pan=sb_pan.get() ) )
     sb_tilt = make_gui( "NECK TILT", -1.6, 0.4, 0.1, lambda : move_robot( tilt=sb_tilt.get() ) )
-    sb_lift = make_gui( "ARM LIFT", 0.2, 0.7, 0.01, lambda : move_robot( lift=sb_lift.get() ) )
+    sb_lift = make_gui( "ARM LIFT", 0.2, 0.85, 0.01, lambda : move_robot( lift=sb_lift.get() ) )
     sb_len = make_gui( "ARM LEN", 0, 0.51, 0.01, lambda : move_robot( length=sb_len.get() ) )
     sb_wrist = make_gui( "ARM WRIST", -1.3, 4.5, 0.1, lambda : move_robot( wrist=sb_wrist.get() ) )
     sb_gripper = make_gui( "GRIPPER", -0.37, 0.19, 0.01, lambda : move_robot( gripper=sb_gripper.get() ) )
