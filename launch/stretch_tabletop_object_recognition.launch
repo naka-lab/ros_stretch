@@ -14,5 +14,7 @@
   <param name="object_rec/pointcloud_clustering/rect_min" value="100"/>
   <param name="object_rec/pointcloud_clustering/rect_max" value="300"/>
   <param name="object_rec/show_result" value="true"/>
-  <node pkg="ros_vision" type="tabletop_object_recognition.py" name="tabletop_object_recog" cwd="node" output="screen" />
+
+  <arg name="svm_model" default=""/>
+  <node pkg="ros_vision" type="tabletop_object_recognition.py" name="tabletop_object_recog" args="$(arg svm_model)" cwd="node" output="screen" />
 </launch>
