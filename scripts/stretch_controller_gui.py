@@ -113,7 +113,7 @@ def main():
     frame = tk.Frame(root)
     tk.Label(frame, text="MOVE BASE", width=15  ).pack(side="left")
     tk.Button( frame, text='<', command=lambda : set_vel(0.0, 0.1)  ).pack(side="left")
-    tk.Button( frame, text='^', command=lambda : set_vel(0.05, 0.1)  ).pack(side="left")
+    tk.Button( frame, text='^', command=lambda : set_vel(0.05, 0.0)  ).pack(side="left")
     tk.Button( frame, text='v', command=lambda : set_vel(-0.05, 0.0)   ).pack(side="left")
     tk.Button( frame, text='>', command=lambda : set_vel(0.0, -0.1)   ).pack(side="left")
     tk.Button( frame, text='stop', command=lambda : set_vel(0.0, 0.0) ).pack(side="left")
