@@ -8,52 +8,95 @@ from control_msgs.msg import FollowJointTrajectoryGoal
 from trajectory_msgs.msg import JointTrajectoryPoint
 from sensor_msgs.msg import JointState
 from geometry_msgs.msg import Twist
-
 import tkinter as tk
 from tkinter import ttk
+import time
 
-def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper=None ):
+def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper=None, timeout=20 ):
     joint_names = []
     positions = []
+    velocities = []
+    accelerations = []
+
 
     # 指定された関節だけを動かす
     if lift != None:
         joint_names.append( "joint_lift" )
         positions.append( lift )
+        velocities.append( 0.3 )
+        accelerations.append( 0.3 )
 
     if length != None:
         joint_names += ["joint_arm_l0", "joint_arm_l1", "joint_arm_l2", "joint_arm_l3"]
         positions += [ length/4 for _ in range(4) ]
+        velocities.append( 0.5 )
+        accelerations.append( 0.5 )
 
     if wrist != None:
         joint_names.append( "joint_wrist_yaw" )
         positions.append(wrist)
+        velocities.append( 5 )
+        accelerations.append( 5 )
 
     if pan != None:
         joint_names.append( "joint_head_pan" )
         positions.append(pan)
+        velocities.append( 5 )
+        accelerations.append( 5 )
 
     if tilt != None:
         joint_names.append( "joint_head_tilt" )
         positions.append(tilt)
-        
+        velocities.append( 5 )
+        accelerations.append( 5 )
+
     if gripper != None:
         joint_names.append('joint_gripper_finger_left')
         positions.append(gripper)
+        velocities.append( 5 )
+        accelerations.append( 5 )
 
     point = JointTrajectoryPoint()
     point.time_from_start = rospy.Duration(1.0)
     point.positions = positions
-    print(point)
+    point.velocities = velocities
+    point.accelerations = accelerations
 
     trajectory_goal = FollowJointTrajectoryGoal()
     trajectory_goal.trajectory.joint_names = joint_names
-
     trajectory_goal.trajectory.points = [point]
     trajectory_goal.trajectory.header.stamp = rospy.Time.now()
     trajectory_client.send_goal(trajectory_goal)
-    trajectory_client.wait_for_result()
+    #trajectory_client.wait_for_result()
 
+    # ゴールに付いてるか確認
+    threshold = {"joint_lift": 0.01, 
+    "joint_arm_l0": 0.01, 
+    "joint_arm_l1": 0.01, 
+    "joint_arm_l2": 0.01, 
+    "joint_arm_l3": 0.01, 
+    "joint_wrist_yaw": 0.1, 
+    "joint_head_pan": 0.1, 
+    "joint_head_tilt": 0.1, 
+    "joint_gripper_finger_left": 0.1  }
+
+    start = time.time()
+    while (time.time()-start)<timeout:
+        cur_js = rospy.wait_for_message( "/joint_states", JointState )
+        cur_pos = dict(zip(cur_js.name, cur_js.position ))
+
+        for name, goal_pos in zip(joint_names, positions):
+            diff = abs( goal_pos - cur_pos[name] )
+            #print(name, "goal:%lf, cur:%lf" % (goal_pos, cur_pos[name]) , "ｰ>" ,diff<threshold[name])
+
+            if diff>threshold[name]:
+                #print("retry")
+                time.sleep(0.1)
+                trajectory_client.send_goal(trajectory_goal)
+                #trajectory_client.wait_for_result()
+                break
+        else:
+            break
 
 def make_gui( name, from_, to, resolution, command ):
     frame = tk.Frame(root)
