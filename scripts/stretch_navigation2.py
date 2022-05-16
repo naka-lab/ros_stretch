@@ -51,7 +51,8 @@ def send_navi_goal(x, y, theta ):
 
 
 
-def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper=None ):
+
+def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper=None, timeout=20 ):
     joint_names = []
     positions = []
 
@@ -92,10 +93,10 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
     trajectory_goal.trajectory.points = [point]
     trajectory_goal.trajectory.header.stamp = rospy.Time.now()
     trajectory_client.send_goal(trajectory_goal)
-    trajectory_client.wait_for_result()
+    #trajectory_client.wait_for_result()
 
     # ゴールに付いてるか確認
-    threshold = {"joint_lift": 0.05, 
+    threshold = {"joint_lift": 0.01, 
     "joint_arm_l0": 0.01, 
     "joint_arm_l1": 0.01, 
     "joint_arm_l2": 0.01, 
@@ -105,23 +106,24 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
     "joint_head_tilt": 0.1, 
     "joint_gripper_finger_left": 0.1  }
 
-    for i in range(10):
+    start = time.time()
+    while (time.time()-start)<timeout:
         cur_js = rospy.wait_for_message( "/joint_states", JointState )
         cur_pos = dict(zip(cur_js.name, cur_js.position ))
 
         for name, goal_pos in zip(joint_names, positions):
             diff = abs( goal_pos - cur_pos[name] )
-            print(name, "goal:%lf, cur:%lf" % (goal_pos, cur_pos[name]) , "ｰ>" ,diff<threshold[name])
+            #print(name, "goal:%lf, cur:%lf" % (goal_pos, cur_pos[name]) , "ｰ>" ,diff<threshold[name])
 
             if diff>threshold[name]:
-                print("retry")
-                time.sleep(1)
+                #print("retry")
+                time.sleep(0.1)
                 trajectory_client.send_goal(trajectory_goal)
-                trajectory_client.wait_for_result()
+                #trajectory_client.wait_for_result()
                 break
         else:
             break
-
+    
 
 
 
