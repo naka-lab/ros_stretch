@@ -12,7 +12,8 @@
   - [local_costmap_params.yaml](config/local_costmap_params.yaml)  
 
 ### 実行前の準備
-- （アームを使う場合）xboxのコントローラを接続して，startボタンを押してキャリブレーションする
+- xboxのコントローラを接続して，startボタンを押してキャリブレーションする
+- またはコマンド`stretch_robot_home.py`を実行する
 
 
 ### アームと台車の速度制御だけを使う場合
