@@ -46,3 +46,16 @@
 - rvizが立ち上げるので`2D Pose Estimate`で現在位置を指定  
   <img src="figs/nav2.png" alt="switch" width="500">
 - この状態で，プログラムから移動やアームの制御ができる
+
+
+## その他注意事項
+- 緊急停止ボタン
+  - stretch上部に緊急停止ボタンがあるので危険な行動をした際には即座に押せるように心がける
+  - stretchが動かない場合は押されていないか確認する
+  - 短く押すと緊急停止，長く押すと解除
+  <img src="figs/head.png" alt="switch" width="500">
+
+- 充電
+  - 使用後は必ず充電をすること，12V AGM
+  - 使用中に充電する場合は，12V supply
+  <img src="figs/battery.png" alt="switch" width="500">
