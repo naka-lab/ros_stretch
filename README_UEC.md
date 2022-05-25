@@ -2,8 +2,8 @@
 
 ## 起動方法
 
-- 後ろにあるスイッチをONにする<img src="figs/switch.png" alt="switch" width="500">
-
+- 後ろにあるスイッチをONにする  
+  <img src="figs/switch.png" alt="switch" width="500">
 - Ubuntuの起動音の後に「IP ○○ です」と発話する．このときの○○がStretchに割り当てたIPアドレスの末尾（192.168.1.○○）なので，IPアドレスが分からない場合は聞き逃さないこと．
 - VNCで192.168.1.○○へアクセスする
 - デスクトップにある`launcher.sh`を起動して，`Stretch`パッケージの`Stretchキャリブレーション`を実行
@@ -41,8 +41,8 @@
 
 ## ナビゲーションの実行
 
-- lancherで`Stretch`の`Navigation（複数map）`横のテキストボックスに事故位置推定用の地図と，パスプランニング用の地図を指定し実行（デフォルトでは`map_file_loc:=$HOME/map.yaml map_file_pp:=$HOME/map_pp.yaml`となっており，`map.yaml`が自己位置推定用の地図，`map_pp.yaml`がパスプランニング用の地図）
+- lancherで`Stretch`の`Navigation（複数map）`横のテキストボックスに事故位置推定用の地図と，パスプランニング用の地図を指定し実行（デフォルトでは`map_file_loc:=$HOME/map.yaml map_file_pp:=$HOME/map_pp.yaml`となっており，`map.yaml`が自己位置推定用の地図，`map_pp.yaml`がパスプランニング用の地図）  
   <img src="figs/nav.png" alt="switch" width="500">
-- rvizが立ち上げるので`2D Pose Estimate`で現在位置を指定
+- rvizが立ち上げるので`2D Pose Estimate`で現在位置を指定  
   <img src="figs/nav2.png" alt="switch" width="500">
 - この状態で，プログラムから移動やアームの制御ができる
