@@ -6,6 +6,7 @@
   <img src="figs/switch.png" alt="switch" width="500">
 - Ubuntuの起動音の後に「IP ○○ です」と発話する．このときの○○がStretchに割り当てたIPアドレスの末尾（192.168.1.○○）なので，IPアドレスが分からない場合は聞き逃さないこと．
 - VNCで192.168.1.○○へアクセスする
+- 接続できない場合はstretch内部PCのsettingsのsharingのScreen Sharingを左クリックして左上のボタンをONにする
 - デスクトップにある`launcher.sh`を起動して，`Stretch`パッケージの`Stretchキャリブレーション`を実行
   <img src="figs/calib.png" alt="switch" width="800">
 - Stretchのアームの昇降・伸縮，グリッパーの回転・開閉が行われる．動かない箇所がある場合には，再起動して，もう一度最初から実行する
