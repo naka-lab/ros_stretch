@@ -69,6 +69,7 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
     trajectory_client.send_goal(trajectory_goal)
     #trajectory_client.wait_for_result()
 
+    """
     # ゴールに付いてるか確認
     threshold = {"joint_lift": 0.01, 
     "joint_arm_l0": 0.01, 
@@ -97,6 +98,7 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
                 break
         else:
             break
+    """
 
 def make_gui( name, from_, to, resolution, command ):
     frame = tk.Frame(root)
