@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 import rospy
 import actionlib
 from control_msgs.msg import FollowJointTrajectoryAction
@@ -23,8 +23,8 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
     if lift != None:
         joint_names.append( "joint_lift" )
         positions.append( lift )
-        velocities.append( 0.3 )
-        accelerations.append( 0.3 )
+        velocities.append( 0.1 )
+        accelerations.append( 0.1 )
 
     if length != None:
         joint_names += ["joint_arm_l0", "joint_arm_l1", "joint_arm_l2", "joint_arm_l3"]
@@ -69,7 +69,6 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
     trajectory_client.send_goal(trajectory_goal)
     #trajectory_client.wait_for_result()
 
-    """
     # ゴールに付いてるか確認
     threshold = {"joint_lift": 0.01, 
     "joint_arm_l0": 0.01, 
@@ -88,17 +87,18 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
 
         for name, goal_pos in zip(joint_names, positions):
             diff = abs( goal_pos - cur_pos[name] )
-            #print(name, "goal:%lf, cur:%lf" % (goal_pos, cur_pos[name]) , "ｰ>" ,diff<threshold[name])
-
             if diff>threshold[name]:
-                #print("retry")
-                time.sleep(0.1)
-                trajectory_client.send_goal(trajectory_goal)
-                #trajectory_client.wait_for_result()
                 break
         else:
-            break
-    """
+            return True
+        
+        res = trajectory_client.get_result()
+        if res is not None and "contact" in res.error_string:
+            rospy.logwarn( "衝突検知" )
+            return False
+
+    rospy.logwarn( "タイムアウト" )
+    return False
 
 def make_gui( name, from_, to, resolution, command ):
     frame = tk.Frame(root)
