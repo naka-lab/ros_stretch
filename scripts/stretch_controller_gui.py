@@ -93,9 +93,15 @@ def move_robot( lift=None, length=None, wrist=None, pan=None, tilt=None, gripper
             return True
         
         res = trajectory_client.get_result()
-        if res is not None and "contact" in res.error_string:
-            rospy.logwarn( "衝突検知" )
-            return False
+        if res is not None:
+            if "contact" in res.error_string:
+                rospy.logwarn( "衝突検知" )
+                return False
+
+            if "out of bounds" in res.error_string:
+                rospy.logwarn( "関節範囲外" )
+                rospy.logwarn( res.error_string )
+                return False
 
     rospy.logwarn( "タイムアウト" )
     return False
