@@ -19,17 +19,16 @@
    1. 新しいバッテリーをフレームと一緒に挿入
        - <img src="figs/stretch_back3.png" alt="back3" width="500">
 1. 前のバッテリーを交換する
-   1. 横に倒す
-   2. 配線を外す
+   1. 配線を外す
       -  <img src="figs/stretch_front1.png" alt="front1" width="500">
       -  図中青丸の配線
-   3. 支柱とベースを固定している部分のネジを緩める，外す       
+   1. 支柱とベースを固定している部分のネジを緩める，外す       
       -  <img src="figs/stretch_side.png" alt="side1" width="500">
       -  図中赤丸のネジ
-   5. 底面をフレームから離すことができ，隙間ができたらバッテリーを取り外す
+   1. 横に倒して底面をフレームから離し，隙間を作ってバッテリーを取り外す
       - <img src="figs/stretch_front2.png" alt="front2" width="500">
-      - バッテリーを固定するフレームから外す
-   6. 新しいバッテリーを搭載，配線
+      - バッテリーを固定していたフレームを先に外す
+   1. 新しいバッテリーを搭載，配線
       - <img src="figs/stretch_front3.png" alt="front2" width="500">
 1. ネジ，配線を元通りに戻す
    1. 底面とフレームの隙間戻し支柱横のネジを固定
