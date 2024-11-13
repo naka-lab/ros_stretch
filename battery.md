@@ -14,20 +14,20 @@
        - 左図青丸で囲んだ配線とファンの固定を外す
        - 右図は外した後の様子
    1. バッテリーを取り出す
+       - バッテリーの配線は先に抜く
        - <img src="figs/stretch_back2.png" alt="back2" width="500">
-       - 配線抜く
    1. 新しいバッテリーをフレームと一緒に挿入
        - <img src="figs/stretch_back3.png" alt="back3" width="500">
 1. 前のバッテリーを交換する
    1. 配線を外す
-      -  <img src="figs/stretch_front1.png" alt="front1" width="500">
       -  図中青丸の配線
+      -  <img src="figs/stretch_front1.png" alt="front1" width="500">
    1. 支柱とベースを固定している部分のネジを緩める，外す       
-      -  <img src="figs/stretch_side.png" alt="side1" width="500">
       -  図中赤丸のネジ
+      -  <img src="figs/stretch_side.png" alt="side1" width="500">
    1. 横に倒して底面をフレームから離し，隙間を作ってバッテリーを取り外す
-      - <img src="figs/stretch_front2.png" alt="front2" width="500">
       - バッテリーを固定していたフレームを先に外す
+      - <img src="figs/stretch_front2.png" alt="front2" width="500">
    1. 新しいバッテリーを搭載，配線
       - <img src="figs/stretch_front3.png" alt="front2" width="500">
 1. ネジ，配線を元通りに戻す
